@@ -1,6 +1,6 @@
 import json
 from service.reservas.EntradaDeDatosReservas import pedir_datos_reserva
-from service.usuarios.usuarios_unicos import generar_id, existe_id
+from service.GeracionIdUnicos import generar_id, existe_id
 
 def guardar_reserva(nueva_reserva, ruta="data/reservas.json"):
     if nueva_reserva is None:

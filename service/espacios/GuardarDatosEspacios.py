@@ -1,6 +1,6 @@
 import json
 from service.espacios.EntradaDeDatosEspacios import pedir_datos_espacio
-from service.usuarios.usuarios_unicos import generar_id, existe_id
+from service.GeracionIdUnicos import generar_id, existe_id
 
 def guardar_espacio(nuevo_espacio, ruta="data/espacios.json"):
     if nuevo_espacio is None:

@@ -1,6 +1,6 @@
 import json
 from service.usuarios.EntradaDeDatosUsuarios import pedir_datos
-from service.usuarios.usuarios_unicos import generar_id, existe_id
+from service.GeracionIdUnicos import generar_id, existe_id
 
 def guardar_usuario(nuevo_usuario, ruta="data/usuarios.json"):
     if nuevo_usuario is None:

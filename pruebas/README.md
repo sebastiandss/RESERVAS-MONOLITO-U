@@ -9,6 +9,8 @@ cd /home/sebas/monolito-reservas
 python -m unittest discover -s pruebas -t . -v
 ```
 
+Resultado actual: **107 pruebas, todas OK** (0 `expected failures`).
+
 ## Reservas (paso 7)
 
 - `apoyo_gestion_reservas.py`: base con JSON temporales; redirige las rutas del gestor con `patch.object`.
@@ -30,13 +32,19 @@ python -m unittest discover -s pruebas -t . -v
 - `test_consultas_disponibilidad.py`: `Aprobada` bloquea; `Pendiente`/`Cancelada` no; franjas adyacentes.
 - `test_consultas_coincidentes.py`: solo reservas activas, solapes y validaciones.
 
+## Ajustes finales (A01)
+
+- `test_almacen_json.py`: archivo ausente, vacío, dañado, no lista, guardado atómico y limpieza de `.tmp` (5 pruebas).
+- `test_aviso_pendientes.py`: aviso al solapar `Pendiente`, franja adyacente, `Cancelada` y no persistencia (5 pruebas).
+- `test_acentos_espacios.py`: `SALON`/`Salón`, `SALÓN`/`Salón` y nombres distintos (4 pruebas).
+
 ## Heredadas (pasos 1 a 6)
 
-Están en `pruebas/legado/` y se siguen ejecutando con el mismo comando.
+Están en `pruebas/legado/` y se siguen ejecutando con el mismo comando; sus módulos de apoyo están en `pruebas/`.
 
 - `test_modelos.py`: contrato de las funciones de `models/`.
 - `test_validaciones.py`: fechas, horas, franjas y campos obligatorios.
-- `test_almacen_json.py`: carga y guardado JSON en archivos temporales.
+- `test_almacen_json.py`: guardar/cargar, archivo ausente, vacío y JSON dañado con respaldo (antes 2 `expected failures`, ya resueltas).
 - `test_datos_ejemplo.py`: integridad de `datos_ejemplo/` (IDs, FKs, formatos y estados).
 - `test_solapamientos.py`: cruces esperados entre reservas activas del dataset.
 - `apoyo_gestion_espacios.py` y `test_gestion_espacios_*.py`: alta, baja y listado de espacios.
@@ -45,6 +53,7 @@ Están en `pruebas/legado/` y se siguen ejecutando con el mismo comando.
 ## Notas
 
 - No se escribe en `data/`; todas las pruebas usan `tempfile`.
-- La suite completa tiene **93 pruebas**: 91 OK y 2 `expected failures`.
-- `legado/test_almacen_json.py` tiene 2 pruebas con `@unittest.expectedFailure` que documentan deudas pendientes: archivo inexistente y JSON dañado. Cuando se implementen, hay que quitar el decorador.
+- La suite completa tiene **107 pruebas**: 49 heredadas, 16 de reservas, 12 de estados, 16 de consultas y 14 de los ajustes finales.
+- Ya no hay decoradores `@unittest.expectedFailure`: los dos casos de la capa JSON pasan y ninguna prueba se eliminó.
 - Las pruebas del dataset leen `datos_ejemplo/` en modo solo lectura.
+- El detalle de los hallazgos y su resolución está en la nota de Obsidian `Memoria/Pruebas y hallazgos.md`.

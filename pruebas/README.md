@@ -23,6 +23,13 @@ python -m unittest discover -s pruebas -t . -v
 - `test_gestion_estados_conflictos.py`: solapes al aprobar, franjas adyacentes y estados no bloqueantes.
 - `test_gestion_estados_transiciones.py`: aprobación repetida y cambios posteriores de estado.
 
+## Consultas (paso 9)
+
+- `apoyo_consultas.py`: base con JSON temporales; redirige las rutas de los tres módulos de consulta.
+- `test_consultas_asignaciones.py`: solo `Aprobada`, nombres legibles y aviso sin resultados.
+- `test_consultas_disponibilidad.py`: `Aprobada` bloquea; `Pendiente`/`Cancelada` no; franjas adyacentes.
+- `test_consultas_coincidentes.py`: solo reservas activas, solapes y validaciones.
+
 ## Heredadas (pasos 1 a 6)
 
 Están en `pruebas/legado/` y se siguen ejecutando con el mismo comando.
@@ -38,6 +45,6 @@ Están en `pruebas/legado/` y se siguen ejecutando con el mismo comando.
 ## Notas
 
 - No se escribe en `data/`; todas las pruebas usan `tempfile`.
-- La suite completa tiene **77 pruebas**: 75 OK y 2 `expected failures`.
+- La suite completa tiene **93 pruebas**: 91 OK y 2 `expected failures`.
 - `legado/test_almacen_json.py` tiene 2 pruebas con `@unittest.expectedFailure` que documentan deudas pendientes: archivo inexistente y JSON dañado. Cuando se implementen, hay que quitar el decorador.
 - Las pruebas del dataset leen `datos_ejemplo/` en modo solo lectura.

@@ -2,9 +2,9 @@
 
 import unittest
 
-from modelos.espacio import campos_espacio, crear_espacio
-from modelos.reserva import ESTADOS_RESERVA, campos_reserva, crear_reserva
-from modelos.usuario import campos_usuario, crear_usuario
+from models.espacio import campos_espacio, crear_espacio
+from models.reserva import ESTADOS_RESERVA, campos_reserva, crear_reserva
+from models.usuario import campos_usuario, crear_usuario
 
 
 class TestModelos(unittest.TestCase):

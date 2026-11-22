@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from modelos.reserva import ESTADOS_RESERVA
+from models.reserva import ESTADOS_RESERVA
 
 
 def pedir_datos_reserva():

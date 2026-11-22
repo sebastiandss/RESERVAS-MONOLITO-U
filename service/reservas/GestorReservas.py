@@ -65,7 +65,6 @@ def registrar_reserva(espacio_id, usuario_id, fecha, hora_inicio, hora_fin, acti
 
     reservas.append(nueva_reserva)
     guardar_datos(RUTA_RESERVAS, reservas)
-
     return nueva_reserva
 
 def cambiar_estado_reserva(id_reserva, nuevo_estado):
@@ -86,7 +85,6 @@ def cambiar_estado_reserva(id_reserva, nuevo_estado):
         for otra in reservas:
                 if otra["espacio_id"] == reserva_encontrada["espacio_id"] and otra["fecha"] == reserva_encontrada["fecha"]:
                     if otra["estado"] == "Aprobada":
-                        # Revisar si se pisan las horas
                         if reserva_encontrada["hora_inicio"] < otra["hora_fin"] and reserva_encontrada["hora_fin"] > otra["hora_inicio"]:
                             raise ErrorReserva("No se puede aprobar porque se cruza con otra reserva aprobada.")
                         

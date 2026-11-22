@@ -1,4 +1,12 @@
+import unicodedata
+
 from service.exceptions.excepciones import ErrorReserva
+
+
+def clave_nombre(nombre):
+    """Clave sin acentos para comparar; no modifica el nombre guardado."""
+    descompuesto = unicodedata.normalize("NFKD", nombre)
+    return "".join(c for c in descompuesto if not unicodedata.combining(c)).casefold()
 
 
 def normalizar_nombre(nombre):
@@ -24,8 +32,8 @@ def validar_capacidad(capacidad):
 
 
 def validar_nombre_unico(nombre, espacios):
-    clave = nombre.casefold()
+    clave = clave_nombre(nombre)
     for espacio in espacios:
-        otro = " ".join(str(espacio.get("nombre", "")).split()).casefold()
+        otro = clave_nombre(" ".join(str(espacio.get("nombre", "")).split()))
         if otro == clave:
             raise ErrorReserva(f"Ya existe un espacio con el nombre '{nombre}'.")

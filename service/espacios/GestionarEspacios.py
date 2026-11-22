@@ -1,58 +1,44 @@
 from modelos.espacio import crear_espacio
 from service.datos.almacen_json import cargar_datos, guardar_datos
 from service.exceptions.excepciones import ErrorReserva
-from service.GeracionIdUnicos import generar_id, existe_id
+from service.espacios.apoyo_espacios import reservas_del_espacio, siguiente_id
+from service.espacios.validaciones_espacios import (
+    normalizar_nombre,
+    validar_capacidad,
+    validar_nombre_unico,
+)
 
 RUTA_ESPACIOS = "data/espacios.json"
 RUTA_RESERVAS = "data/reservas.json"
 
-def agregar_espacio(nombre, capacidad, descripcion=""):
-    if nombre == "" or nombre is None:
-        raise ErrorReserva("El nombre del espacio es obligatorio.")
 
-    if not str(capacidad).isdigit() or int(capacidad) <= 0:
-        raise ErrorReserva("La capacidad debe ser un número mayor a 0.")
+def agregar_espacio(nombre, capacidad, descripcion="", ruta_espacios=RUTA_ESPACIOS):
+    nombre = normalizar_nombre(nombre)
+    capacidad = validar_capacidad(capacidad)
+    espacios = cargar_datos(ruta_espacios)
+    validar_nombre_unico(nombre, espacios)
+    espacio = crear_espacio(siguiente_id(espacios), nombre, capacidad, descripcion)
+    espacios.append(espacio)
+    guardar_datos(ruta_espacios, espacios)
+    return espacio
 
-    espacios = cargar_datos(RUTA_ESPACIOS)
 
-    for espacio in espacios:
-        if espacio["nombre"].lower() == nombre.lower():
-            raise ErrorReserva("Ya existe un espacio con ese nombre.")
+def listar_espacios(ruta_espacios=RUTA_ESPACIOS):
+    espacios = cargar_datos(ruta_espacios)
+    return sorted(espacios, key=lambda e: str(e.get("nombre", "")).casefold())
 
-    nuevo_id = generar_id()
-    while existe_id(nuevo_id, espacios, "id"):
-        nuevo_id = generar_id()
 
-    nuevo_espacio = crear_espacio(nuevo_id, nombre, int(capacidad), descripcion)
-    espacios.append(nuevo_espacio)
-    guardar_datos(RUTA_ESPACIOS, espacios)
-
-    return nuevo_espacio
-
-def listar_espacios():
-
-    return cargar_datos(RUTA_ESPACIOS)
-
-def eliminar_espacio(id_espacio):
-    espacios = cargar_datos(RUTA_ESPACIOS)
-
-    espacio_encontrado = None
-    for espacio in espacios:
-        if espacio["id"] == id_espacio:
-            espacio_encontrado = espacio
-            break
-
-    if espacio_encontrado is None:
+def eliminar_espacio(id_espacio, ruta_espacios=RUTA_ESPACIOS, ruta_reservas=RUTA_RESERVAS):
+    espacios = cargar_datos(ruta_espacios)
+    espacio = next((e for e in espacios if e.get("id") == id_espacio), None)
+    if espacio is None:
         raise ErrorReserva("No existe un espacio con ese ID.")
-
-    reservas = cargar_datos(RUTA_RESERVAS)
-    for reserva in reservas:
-        if "espacio_id" in reserva and reserva["espacio_id"] == id_espacio:
-            raise ErrorReserva("No se puede eliminar el espacio porque tiene reservas.")
-        if "id_espacio" in reserva and reserva["id_espacio"] == id_espacio:
-            raise ErrorReserva("No se puede eliminar el espacio porque tiene reservas.")
-  
-    espacios.remove(espacio_encontrado)
-    guardar_datos(RUTA_ESPACIOS, espacios)
-
+    reservas = reservas_del_espacio(id_espacio, ruta_reservas)
+    if reservas:
+        raise ErrorReserva(
+            f"No se puede eliminar '{espacio['nombre']}' porque tiene "
+            f"{len(reservas)} reserva(s) asociada(s)."
+        )
+    espacios.remove(espacio)
+    guardar_datos(ruta_espacios, espacios)
     return True

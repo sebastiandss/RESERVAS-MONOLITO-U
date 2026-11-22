@@ -16,6 +16,13 @@ python -m unittest discover -s pruebas -t . -v
 - `test_gestion_reservas_validaciones.py`: existencia de usuario/espacio, actividad, fechas y horarios.
 - `test_gestion_reservas_conflictos.py`: solapes con `Aprobada`, franjas adyacentes y estados no bloqueantes.
 
+## Estados de reservas (paso 8)
+
+- `apoyo_gestion_estados.py`: base con JSON temporales; redirige la ruta del gestor de estados.
+- `test_gestion_estados_validaciones.py`: estados válidos, rechazo de estados inválidos, ID inexistente y guardado.
+- `test_gestion_estados_conflictos.py`: solapes al aprobar, franjas adyacentes y estados no bloqueantes.
+- `test_gestion_estados_transiciones.py`: aprobación repetida y cambios posteriores de estado.
+
 ## Heredadas (pasos 1 a 6)
 
 Están en `pruebas/legado/` y se siguen ejecutando con el mismo comando.
@@ -31,6 +38,6 @@ Están en `pruebas/legado/` y se siguen ejecutando con el mismo comando.
 ## Notas
 
 - No se escribe en `data/`; todas las pruebas usan `tempfile`.
-- La suite completa tiene **65 pruebas**: 63 OK y 2 `expected failures`.
+- La suite completa tiene **77 pruebas**: 75 OK y 2 `expected failures`.
 - `legado/test_almacen_json.py` tiene 2 pruebas con `@unittest.expectedFailure` que documentan deudas pendientes: archivo inexistente y JSON dañado. Cuando se implementen, hay que quitar el decorador.
 - Las pruebas del dataset leen `datos_ejemplo/` en modo solo lectura.

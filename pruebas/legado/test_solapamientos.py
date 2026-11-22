@@ -4,7 +4,7 @@ import json
 import os
 import unittest
 
-BASE = os.path.join(os.path.dirname(__file__), "..", "datos_ejemplo")
+BASE = os.path.join(os.path.dirname(__file__), "..", "..", "datos_ejemplo")
 
 
 def cargar(nombre):

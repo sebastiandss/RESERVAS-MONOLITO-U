@@ -1,6 +1,6 @@
 """Selección de estado de reserva por consola."""
 
-from modelos.reserva import ESTADOS_RESERVA
+from models.reserva import ESTADOS_RESERVA
 
 
 def pedir_estado():

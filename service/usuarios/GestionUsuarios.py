@@ -1,4 +1,4 @@
-from modelos.usuario import crear_usuario
+from models.usuario import crear_usuario
 from service.datos.almacen_json import cargar_datos, guardar_datos
 from service.exceptions.excepciones import ErrorReserva
 from service.usuarios.apoyo_usuarios import clave_orden, reservas_del_usuario, siguiente_id

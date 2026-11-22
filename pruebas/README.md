@@ -11,7 +11,7 @@ python -m unittest discover -s pruebas -t . -v
 
 ## Archivos
 
-- `test_modelos.py`: contrato de las funciones de `modelos/`.
+- `test_modelos.py`: contrato de las funciones de `models/`.
 - `test_validaciones.py`: fechas, horas, franjas y campos obligatorios.
 - `test_almacen_json.py`: carga y guardado JSON en archivos temporales.
 - `test_datos_ejemplo.py`: integridad de `datos_ejemplo/` (IDs, FKs, formatos y estados).

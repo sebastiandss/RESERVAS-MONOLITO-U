@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from modelos.reserva import ESTADOS_RESERVA
+
 
 def pedir_datos_reserva():
     id_usuario = input("Ingrese el ID del usuario: ").strip()
@@ -41,5 +43,5 @@ def pedir_datos_reserva():
         "fecha": fecha,
         "inicio": inicio,
         "fin": fin,
-        "estado": "Vigente"
+        "estado": ESTADOS_RESERVA[0]
     }

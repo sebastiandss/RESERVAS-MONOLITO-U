@@ -1,6 +1,6 @@
 """Registro de reservas con validaciones y control de solapes."""
 
-from modelos.reserva import crear_reserva
+from models.reserva import crear_reserva
 from service.datos.almacen_json import cargar_datos, guardar_datos
 from service.exceptions.excepciones import ErrorReserva
 from service.reservas.apoyo_reservas import (

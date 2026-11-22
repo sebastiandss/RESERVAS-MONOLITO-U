@@ -1,6 +1,6 @@
 """Pruebas del alta de reservas (paso 7)."""
 
-from modelos.reserva import campos_reserva
+from models.reserva import campos_reserva
 from pruebas.apoyo_gestion_reservas import BaseGestionReservas
 
 

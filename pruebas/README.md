@@ -20,10 +20,14 @@ python -m unittest discover -s pruebas -t . -v
 - `test_gestion_espacios_alta.py`: alta, validaciones, IDs y nombres duplicados.
 - `test_gestion_espacios_borrado.py`: baja con y sin reservas (actuales y legadas).
 - `test_gestion_espacios_listado.py`: lista vacía y orden por nombre.
+- `apoyo_gestion_usuarios.py`: base con JSON temporales para pruebas de usuarios.
+- `test_gestion_usuarios_alta.py`: alta, validaciones, IDs y documentos duplicados.
+- `test_gestion_usuarios_borrado.py`: baja con y sin reservas (actuales y legadas).
+- `test_gestion_usuarios_listado.py`: lista vacía y orden por nombre.
 
 ## Notas
 
 - No se escribe en `data/`; las pruebas de persistencia usan `tempfile`.
-- La suite completa tiene **35 pruebas**: 33 OK y 2 `expected failures`.
+- La suite completa tiene **49 pruebas**: 47 OK y 2 `expected failures`.
 - `test_almacen_json.py` tiene 2 pruebas con `@unittest.expectedFailure` que documentan deudas pendientes: archivo inexistente y JSON dañado. Cuando se implementen, hay que quitar el decorador.
 - Las pruebas del dataset leen `datos_ejemplo/` en modo solo lectura.

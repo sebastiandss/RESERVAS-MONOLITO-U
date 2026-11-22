@@ -21,16 +21,14 @@ class TestAlmacenJson(unittest.TestCase):
             open(ruta, "w", encoding="utf-8").close()
             self.assertEqual(cargar_datos(ruta), [])
 
-    @unittest.expectedFailure
     def test_archivo_inexistente_devuelve_lista_vacia(self):
-        # Pendiente: según el caso, si no existe debe devolver [].
+        # Resuelto: si no existe, devuelve [].
         with tempfile.TemporaryDirectory() as carpeta:
             ruta = os.path.join(carpeta, "no_existe.json")
             self.assertEqual(cargar_datos(ruta), [])
 
-    @unittest.expectedFailure
     def test_json_danado_se_respalda(self):
-        # Pendiente: según el caso, debe renombrar a .dañado.json y devolver [].
+        # Resuelto: renombra a .dañado.json y devuelve [].
         with tempfile.TemporaryDirectory() as carpeta:
             ruta = os.path.join(carpeta, "danado.json")
             with open(ruta, "w", encoding="utf-8") as archivo:

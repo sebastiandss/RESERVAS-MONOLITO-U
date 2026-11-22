@@ -1,16 +1,29 @@
+"""Lectura y escritura tolerante de los archivos JSON del sistema."""
+
 import json
+import os
 
 
 def cargar_datos(ruta):
-    archivo = open(ruta, "r", encoding="utf-8")
-    contenido = archivo.read()
-    archivo.close()
+    """Devuelve la lista guardada; si no hay archivo o es inválida, devuelve []."""
+    try:
+        with open(ruta, "r", encoding="utf-8") as archivo:
+            contenido = archivo.read()
+    except OSError:
+        return []
     if contenido.strip() == "":
         return []
-    return json.loads(contenido)
+    try:
+        datos = json.loads(contenido)
+    except (ValueError, TypeError):
+        os.replace(ruta, ruta + ".dañado.json")
+        return []
+    return datos if isinstance(datos, list) else []
 
 
 def guardar_datos(ruta, datos):
-    archivo = open(ruta, "w", encoding="utf-8")
-    json.dump(datos, archivo, indent=4, ensure_ascii=False)
-    archivo.close()
+    """Escribe en un archivo temporal y lo reemplaza al terminar."""
+    temporal = ruta + ".tmp"
+    with open(temporal, "w", encoding="utf-8") as archivo:
+        json.dump(datos, archivo, indent=4, ensure_ascii=False)
+    os.replace(temporal, ruta)

@@ -1,8 +1,7 @@
-"""Registro de reservas con validaciones y control de solapes."""
-
 from models.reserva import crear_reserva
 from service.datos.almacen_json import cargar_datos, guardar_datos
 from service.exceptions.excepciones import ErrorReserva
+from service.reservas.aviso_pendientes import aviso_para
 from service.reservas.apoyo_reservas import (
     hay_conflicto,
     siguiente_id,
@@ -41,4 +40,5 @@ def registrar_reserva(espacio_id, usuario_id, fecha, hora_inicio, hora_fin,
     )
     reservas.append(nueva_reserva)
     guardar_datos(RUTA_RESERVAS, reservas)
+    aviso_para(nueva_reserva, reservas)
     return nueva_reserva

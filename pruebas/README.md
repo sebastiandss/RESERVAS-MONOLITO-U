@@ -9,25 +9,28 @@ cd /home/sebas/monolito-reservas
 python -m unittest discover -s pruebas -t . -v
 ```
 
-## Archivos
+## Reservas (paso 7)
 
-- `test_modelos.py`: contrato de las funciones de `modelos/`.
+- `apoyo_gestion_reservas.py`: base con JSON temporales; redirige las rutas del gestor con `patch.object`.
+- `test_gestion_reservas_alta.py`: alta válida, campos del modelo e IDs únicos.
+- `test_gestion_reservas_validaciones.py`: existencia de usuario/espacio, actividad, fechas y horarios.
+- `test_gestion_reservas_conflictos.py`: solapes con `Aprobada`, franjas adyacentes y estados no bloqueantes.
+
+## Heredadas (pasos 1 a 6)
+
+Están en `pruebas/legado/` y se siguen ejecutando con el mismo comando.
+
+- `test_modelos.py`: contrato de las funciones de `models/`.
 - `test_validaciones.py`: fechas, horas, franjas y campos obligatorios.
 - `test_almacen_json.py`: carga y guardado JSON en archivos temporales.
 - `test_datos_ejemplo.py`: integridad de `datos_ejemplo/` (IDs, FKs, formatos y estados).
 - `test_solapamientos.py`: cruces esperados entre reservas activas del dataset.
-- `apoyo_gestion_espacios.py`: base con JSON temporales para las pruebas de espacios.
-- `test_gestion_espacios_alta.py`: alta, validaciones, IDs y nombres duplicados.
-- `test_gestion_espacios_borrado.py`: baja con y sin reservas (actuales y legadas).
-- `test_gestion_espacios_listado.py`: lista vacía y orden por nombre.
-- `apoyo_gestion_usuarios.py`: base con JSON temporales para pruebas de usuarios.
-- `test_gestion_usuarios_alta.py`: alta, validaciones, IDs y documentos duplicados.
-- `test_gestion_usuarios_borrado.py`: baja con y sin reservas (actuales y legadas).
-- `test_gestion_usuarios_listado.py`: lista vacía y orden por nombre.
+- `apoyo_gestion_espacios.py` y `test_gestion_espacios_*.py`: alta, baja y listado de espacios.
+- `apoyo_gestion_usuarios.py` y `test_gestion_usuarios_*.py`: alta, baja y listado de usuarios.
 
 ## Notas
 
-- No se escribe en `data/`; las pruebas de persistencia usan `tempfile`.
-- La suite completa tiene **49 pruebas**: 47 OK y 2 `expected failures`.
-- `test_almacen_json.py` tiene 2 pruebas con `@unittest.expectedFailure` que documentan deudas pendientes: archivo inexistente y JSON dañado. Cuando se implementen, hay que quitar el decorador.
+- No se escribe en `data/`; todas las pruebas usan `tempfile`.
+- La suite completa tiene **65 pruebas**: 63 OK y 2 `expected failures`.
+- `legado/test_almacen_json.py` tiene 2 pruebas con `@unittest.expectedFailure` que documentan deudas pendientes: archivo inexistente y JSON dañado. Cuando se implementen, hay que quitar el decorador.
 - Las pruebas del dataset leen `datos_ejemplo/` en modo solo lectura.

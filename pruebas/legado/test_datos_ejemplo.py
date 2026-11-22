@@ -4,10 +4,10 @@ import json
 import os
 import unittest
 
-from modelos.reserva import ESTADOS_RESERVA
+from models.reserva import ESTADOS_RESERVA
 from service.exceptions import validar_fecha, validar_hora, validar_rango_horas
 
-BASE = os.path.join(os.path.dirname(__file__), "..", "datos_ejemplo")
+BASE = os.path.join(os.path.dirname(__file__), "..", "..", "datos_ejemplo")
 
 
 def cargar(nombre):

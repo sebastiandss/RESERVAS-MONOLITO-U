@@ -28,5 +28,11 @@
         "nombre": "Sofía Díaz",
         "documento": "1005",
         "telefono": "3005556677"
+    },
+    {
+        "id": 6,
+        "nombre": "Sebas",
+        "documento": "1000",
+        "telefono": "3030303030"
     }
 ]

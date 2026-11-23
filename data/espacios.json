@@ -22,5 +22,11 @@
         "nombre": "Auditorio",
         "capacidad": 100,
         "descripcion": "Bloque central"
+    },
+    {
+        "id": 5,
+        "nombre": "Salon",
+        "capacidad": 21,
+        "descripcion": "Salon de baile"
     }
 ]

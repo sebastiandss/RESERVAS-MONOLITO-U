@@ -45,7 +45,7 @@ class VistaEstados(tk.Frame):
 
     def actualizar(self):
         """Recarga el combo de espacios."""
-        espacios = [f"{e['id']} - {e['nombre']}"
+        espacios = [e.etiqueta()
                     for e in self.gestor.listar_espacios()]
         self.caja_espacio["values"] = espacios
         if espacios and not self.espacio.get():

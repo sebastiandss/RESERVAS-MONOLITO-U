@@ -1,6 +1,6 @@
 """Alta y cambio de estado de reservas."""
 
-from models.reserva import crear_reserva
+from models.reserva import Reserva, crear_reserva
 from service.apoyo_entidades import siguiente_id
 from service.datos.almacen_json import (
     RUTA_ESPACIOS, RUTA_RESERVAS, RUTA_USUARIOS, cargar_datos, guardar_datos,
@@ -27,7 +27,7 @@ def registrar_reserva(espacio_id, usuario_id, fecha, hora_inicio, hora_fin,
 
     validar_fecha_y_horario(fecha, hora_inicio, hora_fin, fecha_actual)
 
-    reservas = cargar_datos(RUTA_RESERVAS)
+    reservas = [Reserva.desde_datos(r) for r in cargar_datos(RUTA_RESERVAS)]
     if hay_conflicto(reservas, espacio_id, fecha, hora_inicio, hora_fin):
         raise ErrorReserva("Ese espacio ya está ocupado en ese horario.")
 
@@ -45,7 +45,7 @@ def cambiar_estado_reserva(id_reserva, nuevo_estado):
     """Cambia el estado de una reserva y guarda el resultado."""
     validar_estado(nuevo_estado)
 
-    reservas = cargar_datos(RUTA_RESERVAS)
+    reservas = [Reserva.desde_datos(r) for r in cargar_datos(RUTA_RESERVAS)]
     reserva = buscar_reserva(reservas, id_reserva)
 
     if nuevo_estado == "Aprobada" and hay_conflicto(

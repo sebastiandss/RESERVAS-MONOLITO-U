@@ -1,4 +1,4 @@
-"""Funciones de apoyo para las consultas de reservas."""
+"""Ayudas compartidas por las consultas de reservas."""
 
 ESTADOS_ACTIVOS = ("Pendiente", "Aprobada")
 

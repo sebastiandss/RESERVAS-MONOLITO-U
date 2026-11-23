@@ -2,9 +2,9 @@ from models.reserva import crear_reserva
 from service.datos.almacen_json import cargar_datos, guardar_datos
 from service.exceptions.excepciones import ErrorReserva
 from service.reservas.aviso_pendientes import aviso_para
-from service.reservas.apoyo_reservas import (
+from service.apoyo_reservas import (
     hay_conflicto,
-    siguiente_id,
+    siguiente_id_reserva,
     verificar_registro,
 )
 from service.reservas.validaciones_reservas import (
@@ -35,7 +35,7 @@ def registrar_reserva(espacio_id, usuario_id, fecha, hora_inicio, hora_fin,
         raise ErrorReserva("Ese espacio ya está ocupado en ese horario.")
 
     nueva_reserva = crear_reserva(
-        siguiente_id(reservas), espacio_id, usuario_id, fecha,
+        siguiente_id_reserva(reservas), espacio_id, usuario_id, fecha,
         hora_inicio, hora_fin, actividad, "Pendiente",
     )
     reservas.append(nueva_reserva)

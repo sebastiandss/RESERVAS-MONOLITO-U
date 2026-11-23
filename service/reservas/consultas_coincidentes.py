@@ -1,7 +1,7 @@
 """Consulta de reservas coincidentes (RF-06)."""
 
 from service.datos.almacen_json import cargar_datos
-from service.reservas.apoyo_consultas import esta_activa, se_cruzan
+from service.apoyo_consultas import esta_activa, se_cruzan
 from service.reservas.validaciones_consultas import sin_resultados, validar_consulta
 
 RUTA_RESERVAS = "data/reservas.json"

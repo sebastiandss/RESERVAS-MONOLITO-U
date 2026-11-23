@@ -1,7 +1,7 @@
 """Consulta de espacios disponibles en una fecha y franja (RF-08)."""
 
 from service.datos.almacen_json import cargar_datos
-from service.reservas.apoyo_consultas import ocupada_por_aprobada
+from service.apoyo_consultas import ocupada_por_aprobada
 from service.reservas.validaciones_consultas import sin_resultados, validar_consulta
 
 RUTA_ESPACIOS = "data/espacios.json"

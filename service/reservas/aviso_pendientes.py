@@ -1,6 +1,6 @@
 """Aviso automático de solicitudes Pendiente que coinciden (RN-05)."""
 
-from service.reservas.apoyo_consultas import se_cruzan
+from service.apoyo_consultas import se_cruzan
 
 
 def aviso_para(nueva_reserva, reservas):

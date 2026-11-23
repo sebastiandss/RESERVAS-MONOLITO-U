@@ -2,7 +2,7 @@
 
 from service.datos.almacen_json import cargar_datos, guardar_datos
 from service.exceptions.excepciones import ErrorReserva
-from service.reservas.apoyo_estados import buscar_reserva, hay_conflicto_aprobada
+from service.apoyo_reservas import buscar_reserva, hay_conflicto_aprobada
 from service.reservas.validaciones_estados import validar_estado
 
 RUTA_RESERVAS = "data/reservas.json"

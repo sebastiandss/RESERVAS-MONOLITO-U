@@ -30,9 +30,9 @@ class VistaReservas(tk.Frame):
 
     def actualizar(self):
         """Recarga los combos de espacios y usuarios."""
-        espacios = [f"{e['id']} - {e['nombre']}"
+        espacios = [e.etiqueta()
                     for e in self.gestor.listar_espacios()]
-        usuarios = [f"{u['id']} - {u['nombre']}"
+        usuarios = [u.etiqueta()
                     for u in self.gestor.listar_usuarios()]
         self.caja_espacio["values"] = espacios
         self.caja_usuario["values"] = usuarios

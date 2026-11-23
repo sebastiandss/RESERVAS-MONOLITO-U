@@ -1,6 +1,6 @@
 """Validaciones para altas, cambios de estado y consultas de reservas."""
 
-from models.reserva import ESTADOS_RESERVA
+from models.reserva import Reserva
 from service.exceptions import ErrorReserva
 from service.exceptions.fechas import validar_fecha
 from service.exceptions.horas import validar_rango_horas
@@ -26,7 +26,7 @@ def validar_fecha_y_horario(fecha, hora_inicio=None, hora_fin=None,
 
 def validar_estado(nuevo_estado):
     """Acepta solo los estados definidos en el modelo."""
-    if nuevo_estado not in ESTADOS_RESERVA:
+    if not Reserva.es_estado_valido(nuevo_estado):
         raise ErrorReserva(
             "Estado no válido. Solo se permite: Pendiente, Aprobada, "
             "Rechazada o Cancelada."

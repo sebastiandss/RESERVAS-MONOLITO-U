@@ -1,4 +1,4 @@
-from models.usuario import crear_usuario
+from models.usuario import Usuario, crear_usuario
 from service.datos.almacen_json import cargar_datos, guardar_datos
 from service.exceptions.excepciones import ErrorReserva
 from service.apoyo_entidades import clave_orden, reservas_del_usuario, siguiente_id
@@ -24,7 +24,7 @@ def agregar_usuario(nombre, documento, telefono, ruta_usuarios=RUTA_USUARIOS):
     return usuario
 
 def listar_usuarios(ruta_usuarios=RUTA_USUARIOS):
-    usuarios = cargar_datos(ruta_usuarios)
+    usuarios = [Usuario.desde_datos(u) for u in cargar_datos(ruta_usuarios)]
     return sorted(usuarios, key=clave_orden)
 
 def eliminar_usuario(id_usuario, ruta_usuarios=RUTA_USUARIOS, ruta_reservas=RUTA_RESERVAS):

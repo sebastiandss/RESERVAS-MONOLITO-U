@@ -1,4 +1,4 @@
-from models.espacio import crear_espacio
+from models.espacio import Espacio, crear_espacio
 from service.datos.almacen_json import cargar_datos, guardar_datos
 from service.exceptions.excepciones import ErrorReserva
 from service.apoyo_entidades import reservas_del_espacio, siguiente_id
@@ -24,7 +24,7 @@ def agregar_espacio(nombre, capacidad, descripcion="", ruta_espacios=RUTA_ESPACI
 
 
 def listar_espacios(ruta_espacios=RUTA_ESPACIOS):
-    espacios = cargar_datos(ruta_espacios)
+    espacios = [Espacio.desde_datos(e) for e in cargar_datos(ruta_espacios)]
     return sorted(espacios, key=lambda e: str(e.get("nombre", "")).casefold())
 
 

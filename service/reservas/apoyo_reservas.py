@@ -1,7 +1,6 @@
 """Funciones de apoyo para el registro de reservas."""
 
 from service.exceptions.excepciones import ErrorReserva
-from service.GeracionIdUnicos import existe_id, generar_id
 
 
 def verificar_registro(registros, registro_id, mensaje):
@@ -26,8 +25,6 @@ def hay_conflicto(reservas, espacio_id, fecha, hora_inicio, hora_fin):
 
 
 def siguiente_id(reservas):
-    """Devuelve un ID único con el generador actual (sin cambios)."""
-    nuevo_id = generar_id()
-    while existe_id(nuevo_id, reservas, "id"):
-        nuevo_id = generar_id()
-    return nuevo_id
+    """Devuelve el siguiente ID entero (máximo + 1)."""
+    ids = [int(r["id"]) for r in reservas if str(r.get("id", "")).isdigit()]
+    return max(ids, default=0) + 1

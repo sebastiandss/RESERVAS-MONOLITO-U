@@ -17,11 +17,3 @@ def crear_reserva(id_reserva, espacio_id, usuario_id, fecha,
         "estado": estado
     }
 
-
-def campos_reserva():
-    """Devuelve la lista de campos de la entidad Reserva."""
-    return [
-        "id", "espacio_id", "usuario_id", "fecha",
-        "hora_inicio", "hora_fin", "actividad", "estado"
-    ]
-

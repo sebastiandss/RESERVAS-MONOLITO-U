@@ -2,8 +2,7 @@
 
 from service.espacios.GestionarEspacios import agregar_espacio, eliminar_espacio, listar_espacios
 from service.usuarios.GestionUsuarios import agregar_usuario, eliminar_usuario, listar_usuarios
-from service.reservas.GestorReservas import registrar_reserva
-from service.reservas.GestorEstados import cambiar_estado_reserva
+from service.reservas.gestion import cambiar_estado_reserva, registrar_reserva
 
 
 class Gestor:

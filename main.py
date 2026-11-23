@@ -1,10 +1,6 @@
 """Punto de entrada del monolito de reservas."""
 
-
-def main():
-    """Inicia la aplicación."""
-    pass
-
+from front.app import main
 
 if __name__ == "__main__":
     main()

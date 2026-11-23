@@ -108,5 +108,15 @@
         "hora_fin": "12:00",
         "actividad": "Escuela de baloncesto",
         "estado": "Aprobada"
+    },
+    {
+        "id": "BNGZW",
+        "espacio_id": 5,
+        "usuario_id": 6,
+        "fecha": "2026-12-22",
+        "hora_inicio": "07:00",
+        "hora_fin": "09:00",
+        "actividad": "bailar",
+        "estado": "Aprobada"
     }
 ]

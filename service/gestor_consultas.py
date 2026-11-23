@@ -1,6 +1,6 @@
 """Fachada orientada a objetos para las consultas del sistema."""
 
-from service.reservas.consultas_reservas import (
+from service.reservas.consultas import (
     consultar_espacios_disponibles,
     consultar_quien_tiene_espacios,
     consultar_reservas_coincidentes,

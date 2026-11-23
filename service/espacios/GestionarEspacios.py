@@ -1,7 +1,7 @@
 from models.espacio import crear_espacio
 from service.datos.almacen_json import cargar_datos, guardar_datos
 from service.exceptions.excepciones import ErrorReserva
-from service.espacios.apoyo_espacios import reservas_del_espacio, siguiente_id
+from service.apoyo_entidades import reservas_del_espacio, siguiente_id
 from service.espacios.validaciones_espacios import (
     normalizar_nombre,
     validar_capacidad,

@@ -3,6 +3,10 @@
 import json
 import os
 
+RUTA_ESPACIOS = "data/espacios.json"
+RUTA_USUARIOS = "data/usuarios.json"
+RUTA_RESERVAS = "data/reservas.json"
+
 
 def cargar_datos(ruta):
     """Devuelve la lista guardada; si no hay archivo o es inválida, devuelve []."""

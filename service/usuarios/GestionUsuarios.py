@@ -1,7 +1,7 @@
 from models.usuario import crear_usuario
 from service.datos.almacen_json import cargar_datos, guardar_datos
 from service.exceptions.excepciones import ErrorReserva
-from service.usuarios.apoyo_usuarios import clave_orden, reservas_del_usuario, siguiente_id
+from service.apoyo_entidades import clave_orden, reservas_del_usuario, siguiente_id
 from service.usuarios.validaciones_usuarios import (
     normalizar_documento,
     normalizar_nombre,

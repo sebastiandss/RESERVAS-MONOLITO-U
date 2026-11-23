@@ -1,1 +1,32 @@
-[]
+[
+    {
+        "id": 1,
+        "nombre": "Ana Torres",
+        "documento": "1001",
+        "telefono": "3001112233"
+    },
+    {
+        "id": 2,
+        "nombre": "Luis Gómez",
+        "documento": "1002",
+        "telefono": "3002223344"
+    },
+    {
+        "id": 3,
+        "nombre": "Marta Ríos",
+        "documento": "1003",
+        "telefono": "3003334455"
+    },
+    {
+        "id": 4,
+        "nombre": "Carlos Pérez",
+        "documento": "1004",
+        "telefono": "3004445566"
+    },
+    {
+        "id": 5,
+        "nombre": "Sofía Díaz",
+        "documento": "1005",
+        "telefono": "3005556677"
+    }
+]
